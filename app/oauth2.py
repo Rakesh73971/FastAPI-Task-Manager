@@ -24,9 +24,10 @@ def verify_access_token(token:str,credential_exception):
     try:
         payload = jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
         user_id:int = payload.get("user_id")
-        if user_id is None:
+        role:str = payload.get("role")
+        if user_id is None or role is None:
             raise credential_exception
-        token_data = TokenData(id=user_id)
+        token_data = TokenData(id=user_id,role=role)
         return token_data
     except JWTError:
         raise credential_exception
