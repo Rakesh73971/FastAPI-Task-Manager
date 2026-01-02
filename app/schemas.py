@@ -53,6 +53,7 @@ class TaskOut(BaseModel):
 class User(BaseModel):
     email : EmailStr
     password : str
+    role : str
 
 
 
